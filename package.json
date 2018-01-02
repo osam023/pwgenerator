@@ -11,14 +11,24 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.weakPasswordGenerate",
+        "onCommand:extension.normalPasswordGenerate",
+        "onCommand:extension.strongPasswordGenerate"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "extension.weakPasswordGenerate",
+                "title": "Weak password generate."
+            },
+            {
+                "command": "extension.normalPasswordGenerate",
+                "title": "Normal password generate."
+            },
+            {
+                "command": "extension.strongPasswordGenerate",
+                "title": "Strong password generate."
             }
         ]
     },
