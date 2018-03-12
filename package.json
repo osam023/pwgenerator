@@ -1,6 +1,6 @@
 {
     "name": "pwgenerator",
-    "displayName": "pwgenerator",
+    "displayName": "random password generator",
     "description": "Random password generator extension for Visual Studio Code",
     "version": "0.0.1",
     "publisher": "osam023",
@@ -20,15 +20,15 @@
         "commands": [
             {
                 "command": "extension.weakPasswordGenerate",
-                "title": "Weak password generate."
+                "title": "Generate password: Alphabet only"
             },
             {
                 "command": "extension.normalPasswordGenerate",
-                "title": "Normal password generate."
+                "title": "Generate password: Alphabet and digits"
             },
             {
                 "command": "extension.strongPasswordGenerate",
-                "title": "Strong password generate."
+                "title": "Generate password: Alphabet and digits, symbols"
             }
         ]
     },
