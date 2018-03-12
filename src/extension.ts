@@ -12,7 +12,7 @@ enum Level {
 }
 
 /**
- * 
+ * input password length and number of generate.
  * 
  * @param context 
  */
@@ -20,11 +20,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     let normalPasswordGenerator = vscode.commands.registerCommand('extension.normalPasswordGenerate', () => {
         vscode.window.showInputBox({
-            prompt: '[password length] * [create size]',
+            prompt: 'Input: [password length]*[number of generate]',
             validateInput: param => {
                 var regex = /\d+\s*[*]\s*\d+/;
-                return regex.test(param) ? '' : 'input: [password length] * [create size]';
-            }
+                return regex.test(param) ? '' : '[password length]*[number of generate]';
+            },
+            placeHolder: '8*10'
         }).then((value) => {
             generate(Level.NORMAL, value);
         });
@@ -32,11 +33,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     let weakPasswordGenerator = vscode.commands.registerCommand('extension.weakPasswordGenerate', () => {
         vscode.window.showInputBox({
-            prompt: '[password length] * [create size]',
+            prompt: 'Input: [password length]*[number of generate]',
             validateInput: param => {
                 var regex = /\d+\s*[*]\s*\d+/;
-                return regex.test(param) ? '' : 'input: [password length] * [create size]';
-            }
+                return regex.test(param) ? '' : '[password length]*[number of generate]';
+            },
+            placeHolder: '8*10'
         }).then((value) => {
             generate(Level.WEAK, value);
         });
@@ -44,11 +46,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     let strongPasswordGenerator = vscode.commands.registerCommand('extension.strongPasswordGenerate', () => {
         vscode.window.showInputBox({
-            prompt: '[password length] * [create size]',
+            prompt: 'Input: [password length]*[number of generate]',
             validateInput: param => {
                 var regex = /\d+\s*[*]\s*\d+/;
-                return regex.test(param) ? '' : 'input: [password length] * [create size]';
-            }
+                return regex.test(param) ? '' : '[password length]*[number of generate]';
+            },
+            placeHolder: '8*10'
         }).then((value) => {
             generate(Level.STRONG, value);
         });
@@ -63,14 +66,15 @@ export function deactivate() {
 }
 
 /**
+ * generate password.
  * 
- * @param level 
- * @param value 
+ * @param level password strength.
+ * @param value input string.
  */
 function generate(level: Level, value): void {
     if (value == undefined) return;
-    let length: number = 8;
-    let size: number = 1;
+    let length: number = 8;  // default size.
+    let size: number = 1;    // default number of generate.
     let result = value.match(/(\d+)\s*[*]\s*(\d+)/);
     length = +result[1];
     size = +result[2];
@@ -85,7 +89,7 @@ function generate(level: Level, value): void {
  * 
  * @param level Password strength level.
  * @param length password length.
- * @param size password number of piece
+ * @param size password number of piece.
  */
 function getPasswords(level: Level, length: number, size: number): string {
     let password: string = "";
@@ -138,10 +142,10 @@ function generatePassword(level: Level, length: number): string {
 }
 
 /**
+ * check duplicate value in list.
  * 
- * 
- * @param newPassword 
- * @param passwordArray 
+ * @param newPassword password string.
+ * @param passwordArray password list.
  */
 function hasDuplicate(newPassword: string, passwordArray: string[]): boolean {
     var hasDuplicate: boolean = false;
